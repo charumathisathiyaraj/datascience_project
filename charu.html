@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sentiment Analyzer</title>
+<script>
+const positiveWords = ["happy", "joy", "love", "good"];
+const negativeWords = ["sad", "angry", "hate", "bad"];
+function analyzeSentiment(text) {
+const wordCounts = {};
+text.split(/\s+/).forEach(word => (wordCounts[word.toLowerCase()] = (wordCounts[word.toLowerCase()] || 0) + 1));
+let sentiment = "neutral";
+let positiveCount = 0;
+let negativeCount = 0;
+for (const word in wordCounts) {
+if (positiveWords.includes(word)) {
+positiveCount += wordCounts[word];
+} else if (negativeWords.includes(word)) {
+negativeCount += wordCounts[word];
+}
+}
+if (positiveCount > negativeCount) {
+sentiment = "positive";
+} else if (negativeCount > positiveCount) {
+sentiment = "negative";
+}
+return sentiment;
+}
+function analyzeText() {
+const text = document.getElementById("inputText").value;
+const sentiment = analyzeSentiment(text);
+document.getElementById("sentimentOutput").textContent = "Sentiment: " + sentiment;
+}
+</script>
+</head>
+<body bgcolor="#9f7781">
+    <center>
+        <h1>SANKARA ANALYZEEE PAGE</h1>
+        <br>
+        <h3>welcome to our sentiment page </h3>
+        <br>
+        <hr>
+        <br>
+<input type="text" id="inputText" placeholder="Enter text to analyze">
+<button onclick="analyzeText()">Analyze</button>
+<p id="sentimentOutput"></p>
+</center>
+<center>
+<img src="doll.jpeg" width="500" height="500">
+</center>
+<br>
+<hr>
+<br>
+<p>........wow super our sentiment analyzee ........</p>
+</body>
+</html>
+
